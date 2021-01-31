@@ -1,12 +1,15 @@
-# import config from "./config.coffee"
-# import * as Notify from "./Notify.coffee"
-# import * as UIController from "./UIController.coffee"
-# import * as Core from "./Core.coffee"
+import * as UIController from "./UIController.coffee"
+import * as Core from "./Core.coffee"
 
-loadEventListeners = ->
-#    selector = UIController.getSelector()
+selector = UIController.getSelector();
 
+loadEventListeners = ->    
+    UIController.getElement(selector.add_btn).addEventListener('click', Core.addTodo) 
+
+loadChart = ->
+    UIController.drawChart selector.todo_chart
 
 export default init = ->
     console.log "app init..."
     loadEventListeners()
+    #loadChart()
