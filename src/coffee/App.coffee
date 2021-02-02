@@ -8,8 +8,8 @@ export default class App
         @selector = @ui.getSelector()
         @core = new Core(@ui)
 
-        console.log "app init..."
         @loadEvents()
+        window.deleteTodo = @core.deleteTodo
 
 
     loadEvents: ->
@@ -21,5 +21,5 @@ export default class App
     ###
     listenerConfig: ->
         [
-            ['click',@selector.add_btn,@core.addTodo]
+            ['click', @selector.add_btn, @core.addTodo],
         ]
