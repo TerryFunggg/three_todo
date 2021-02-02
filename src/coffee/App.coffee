@@ -1,15 +1,25 @@
-import * as UIController from "./UIController.coffee"
-import * as Core from "./Core.coffee"
+import UIController from "./UIController.coffee"
+import Core from "./Core.coffee"
 
-selector = UIController.getSelector();
+export default class App
+    constructor: ->
+        # init controllers
+        @ui = new UIController()
+        @selector = @ui.getSelector()
+        @core = new Core(@ui)
 
-loadEventListeners = ->    
-    UIController.getElement(selector.add_btn).addEventListener('click', Core.addTodo) 
+        console.log "app init..."
+        @loadEvents()
 
-loadChart = ->
-    UIController.drawChart selector.todo_chart
 
-export default init = ->
-    console.log "app init..."
-    loadEventListeners()
-    #loadChart()
+    loadEvents: ->
+        applyListener = (arr) => @ui.getElement(arr[1]).addEventListener(arr[0],arr[2])
+        applyListener el for el in @listenerConfig()
+
+    ###
+        [type, dom element id/class , listener ]
+    ###
+    listenerConfig: ->
+        [
+            ['click',@selector.add_btn,@core.addTodo]
+        ]
