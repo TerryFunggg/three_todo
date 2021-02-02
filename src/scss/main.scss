@@ -8,3 +8,110 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    background-color: $light-color;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    height: 100vh;
+}
+
+main {
+    background-color: $primary-color;
+    color:$light-color;
+    padding: 10px;
+    border: 1px solid $primary-color;
+    border-radius: 20px;
+    width: 520px;
+    max-width: 720px;
+    box-shadow: 5px 3px 5px rgb(192, 192, 192);
+
+    .todo-header {
+        margin-top:1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        padding: 10px 20px;
+        justify-content: space-between;
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        button {
+            border: 1px solid darken($light-color,10%);
+            border-radius: 20px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: $light-color;
+            background-color: $primary-color;
+
+            &:hover {
+                cursor: pointer;
+                background-color: lighten($primary-color, 10%);
+            }
+        }
+    }
+    .todo-container {
+        display: grid;
+        padding: 5;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75em;
+
+        .item {
+            position: relative;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            padding: 2rem;
+            overflow: hidden;
+
+            &:hover {
+                i {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+
+            span {
+                word-wrap: break-word;
+                display: block;
+                margin: auto;
+            }
+
+            i {
+                opacity: 0;
+                position: absolute;
+                top: 5px;
+                right: 10px;                
+                font-size: 1rem;
+            }
+        }
+
+        .item:first-child {
+            background: linear-gradient(to right, #ff9966 0%, #ff5e62 100%);
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        .item:nth-child(2){
+           // background: linear-gradient(to right, #77ad59 0%, #78ffd6 100%);
+           background-color: #e9c46a;
+            color: darken($light-color, 5%);
+        }
+
+        .item:last-child{
+            //background: linear-gradient(to right, #FF416C 0%, #FF4B2B 100%);
+            background-color: #2a9d8f;
+
+        }
+    }
+}
+
+@media(max-width:450px){
+    html {
+        font-size: 12px;
+    }
+}

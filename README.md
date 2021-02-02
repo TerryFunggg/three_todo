@@ -2,4 +2,4 @@
 
 A todo app that help your life more simple.
 
-(developing)
+<img src="./screenshot.png" style="zoom:35%"/>

@@ -1,12 +1,25 @@
-# import config from "./config.coffee"
-# import * as Notify from "./Notify.coffee"
-# import * as UIController from "./UIController.coffee"
-# import * as Core from "./Core.coffee"
+import UIController from "./UIController.coffee"
+import Core from "./Core.coffee"
 
-loadEventListeners = ->
-#    selector = UIController.getSelector()
+export default class App
+    constructor: ->
+        # init controllers
+        @ui = new UIController()
+        @selector = @ui.getSelector()
+        @core = new Core(@ui)
+
+        @loadEvents()
+        window.deleteTodo = @core.deleteTodo
 
 
-export default init = ->
-    console.log "app init..."
-    loadEventListeners()
+    loadEvents: ->
+        applyListeners = (type,domEl,listener) => @ui.getElement(domEl).addEventListener type, listener
+        applyListeners ...el for el in @listenerConfig()
+
+    ###
+        [type, dom element id/class , listener ]
+    ###
+    listenerConfig: ->
+        [
+            ['click', @selector.add_btn, @core.addTodo],
+        ]
