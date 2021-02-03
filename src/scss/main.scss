@@ -53,6 +53,10 @@ main {
                 cursor: pointer;
                 background-color: lighten($primary-color, 10%);
             }
+
+            &:focus {
+                outline: 0;
+            }
         }
     }
     .todo-container {
