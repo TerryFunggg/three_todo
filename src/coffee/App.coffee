@@ -1,5 +1,6 @@
 import UIController from "./UIController.coffee"
 import Core from "./Core.coffee"
+import Storage from "./Storage.coffee"
 
 export default class App
     constructor: ->
@@ -10,6 +11,9 @@ export default class App
 
         @loadEvents()
         window.deleteTodo = @core.deleteTodo
+
+        return @core.loadTodo() if @core.isToday()
+        @cleanUp()
 
 
     loadEvents: ->
@@ -23,3 +27,5 @@ export default class App
         [
             ['click', @selector.add_btn, @core.addTodo],
         ]
+
+    cleanUp: -> Storage.todos().clean()
